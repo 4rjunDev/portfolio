@@ -69,7 +69,7 @@ export function AppsMenu({ open, setOpen }: { open: boolean; setOpen: (v: boolea
               my.set(-999);
               setHovered(null);
             }}
-            className="absolute inset-x-0 top-16 border-b border-border bg-background/[0.97] shadow-[0_40px_80px_-30px_rgba(0,0,0,0.6)] backdrop-blur-2xl"
+            className="absolute inset-x-0 top-16 border-b border-border bg-background shadow-[0_40px_80px_-30px_rgba(0,0,0,0.6)] backdrop-blur-2xl"
           >
             <motion.div aria-hidden className="pointer-events-none absolute inset-0" style={{ background: spotlight }} />
 
