@@ -15,7 +15,7 @@ export function AppScreen({
   if (src) {
     return (
       <Image
-        src={src}
+        src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}${src}`}
         alt={`${app.name} screen`}
         fill
         priority={priority}
