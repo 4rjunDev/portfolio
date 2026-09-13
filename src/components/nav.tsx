@@ -32,7 +32,11 @@ export function Nav() {
         </Link>
         <div className="flex items-center gap-6 text-sm sm:gap-8">
           <AppsMenu open={menuOpen} setOpen={setMenuOpen} />
-          <Link href="/#about" className="text-muted hover:text-foreground transition-colors">
+          <Link href="/lab" className="flex items-center gap-1.5 text-muted hover:text-foreground transition-colors">
+            Lab
+            <span className="h-1.5 w-1.5 rounded-full bg-accent shadow-[0_0_8px_var(--accent)]" />
+          </Link>
+          <Link href="/#about" className="hidden text-muted hover:text-foreground transition-colors sm:inline">
             About
           </Link>
           <ThemeToggle />
