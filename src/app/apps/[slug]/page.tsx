@@ -1,11 +1,12 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { apps, getApp } from "@/data/apps";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
 import { Reveal } from "@/components/reveal";
 import { PhoneFrame } from "@/components/phone-frame";
+import { StackPill } from "@/components/stack-pill";
 
 export function generateStaticParams() {
   return apps.map((a) => ({ slug: a.slug }));
@@ -24,96 +25,131 @@ export default async function AppDetail({ params }: { params: Promise<{ slug: st
   if (!app) notFound();
 
   const index = apps.findIndex((a) => a.slug === slug);
-  const next = apps[(index + 1) % apps.length];
+  const more = [1, 2, 3].map((k) => apps[(index + k) % apps.length]);
+  const screens: (string | undefined)[] = app.screenshots.length ? app.screenshots : [undefined];
 
   return (
     <div className="flex flex-1 flex-col">
       <Nav />
-      <main className="mx-auto w-full max-w-5xl px-6 pt-32 pb-24 md:px-10">
-        <Reveal>
-          <Link
-            href="/#work"
-            className="mb-10 inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-foreground"
-          >
-            <ArrowLeft size={16} /> All work
-          </Link>
-        </Reveal>
+      <main className="relative w-full pt-28 pb-24">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[70vh]"
+          style={{ background: `radial-gradient(60% 50% at 50% 0%, ${app.accent}26 0%, transparent 70%)` }}
+        />
 
-        <div className="grid gap-12 md:grid-cols-[1fr_1.3fr] md:gap-16">
-          <Reveal className="order-2 md:order-1">
-            <div className="flex gap-4 overflow-x-auto pb-2 md:sticky md:top-28 md:flex-col md:gap-6 md:overflow-visible">
-              {(app.screenshots.length ? app.screenshots : [undefined]).map((src, i) => (
-                <div key={src ?? i} className="w-40 shrink-0 md:w-full">
-                  <PhoneFrame
-                    src={src}
-                    alt={`${app.name} screenshot ${i + 1}`}
-                    placeholder={{ name: app.name, tagline: app.category }}
-                    priority={i === 0}
-                  />
-                </div>
+        <div className="mx-auto max-w-6xl px-6 md:px-10">
+          <Reveal>
+            <Link
+              href="/#work"
+              className="mb-10 inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-foreground"
+            >
+              <ArrowLeft size={16} /> All apps
+            </Link>
+          </Reveal>
+
+          <Reveal>
+            <div className="flex items-center gap-4 text-xs text-muted">
+              <span className="font-mono tabular-nums">{String(index + 1).padStart(2, "0")}</span>
+              <span className="h-px w-10 bg-border" />
+              <span className="uppercase tracking-[0.2em]">{app.category}</span>
+            </div>
+            <h1 className="font-display mt-4 text-5xl tracking-tight sm:text-6xl lg:text-7xl">
+              {app.displayName ?? app.name}
+            </h1>
+            <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted sm:text-xl">{app.tagline}</p>
+          </Reveal>
+
+          <Reveal delay={0.1}>
+            <div className="mt-6 flex flex-wrap gap-2">
+              {app.stack.map((t) => (
+                <StackPill key={t} name={t} />
               ))}
             </div>
           </Reveal>
+        </div>
 
-          <div className="order-1 md:order-2">
-            <Reveal>
-              <p className="mb-3 text-sm uppercase tracking-[0.2em] text-muted">{app.category}</p>
-              <h1 className="font-display text-5xl tracking-tight sm:text-6xl">
-                {app.displayName ?? app.name}
-              </h1>
-              <p className="mt-5 text-lg leading-relaxed text-muted">{app.tagline}</p>
-            </Reveal>
-
-            <Reveal delay={0.1}>
-              <p className="mt-8 leading-relaxed text-foreground/90">{app.description}</p>
-            </Reveal>
-
-            <Reveal delay={0.15}>
-              <div className="mt-10 grid grid-cols-2 gap-6 border-y border-border py-6 text-sm">
-                <div>
-                  <p className="text-muted">Status</p>
-                  <p className="mt-1 font-medium">{app.status}</p>
-                  <p className="mt-0.5 text-xs text-muted">{app.statusDetail}</p>
-                </div>
-                <div>
-                  <p className="text-muted">Year</p>
-                  <p className="mt-1 font-medium">{app.year}</p>
-                </div>
+        <Reveal delay={0.15}>
+          <div className="mt-14 flex snap-x snap-mandatory gap-6 overflow-x-auto px-6 pb-6 md:px-10 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            <div className="shrink-0 w-[calc((100vw-72rem)/2-1.5rem)] max-md:hidden" />
+            {screens.map((src, i) => (
+              <div key={src ?? i} className="w-[220px] shrink-0 snap-center sm:w-[260px]">
+                <PhoneFrame app={app} src={src} priority={i === 0} sizes="260px" />
               </div>
-            </Reveal>
+            ))}
+          </div>
+        </Reveal>
 
-            <Reveal delay={0.2}>
-              <h2 className="mt-10 mb-4 font-display text-xl">Key features</h2>
-              <ul className="space-y-3">
+        <div className="mx-auto mt-16 grid max-w-6xl gap-12 px-6 md:grid-cols-[1.3fr_1fr] md:gap-20 md:px-10">
+          <div>
+            <Reveal>
+              <p className="text-lg leading-relaxed text-foreground/90">{app.description}</p>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <h2 className="font-display mt-12 mb-5 text-2xl">Key features</h2>
+              <ul className="grid gap-3 sm:grid-cols-2">
                 {app.features.map((f) => (
-                  <li key={f} className="flex gap-3 text-sm leading-relaxed text-foreground/90">
-                    <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent" />
+                  <li
+                    key={f}
+                    className="flex gap-3 rounded-2xl border border-card-border bg-card/50 p-4 text-sm leading-relaxed text-foreground/90"
+                  >
+                    <span
+                      className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full"
+                      style={{ background: app.accent, boxShadow: `0 0 8px ${app.accent}` }}
+                    />
                     {f}
                   </li>
                 ))}
               </ul>
             </Reveal>
+          </div>
 
-            <Reveal delay={0.25}>
-              <h2 className="mt-10 mb-4 font-display text-xl">Tech stack</h2>
-              <div className="flex flex-wrap gap-2">
-                {app.stack.map((t) => (
-                  <span key={t} className="rounded-full border border-border px-3 py-1.5 text-xs text-muted">
-                    {t}
-                  </span>
-                ))}
-              </div>
-            </Reveal>
-
-            <Reveal delay={0.3}>
-              <Link
-                href={`/apps/${next.slug}`}
-                className="mt-14 inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-foreground"
-              >
-                Next: {next.name} <ArrowLeft size={16} className="rotate-180" />
-              </Link>
+          <div className="md:sticky md:top-28 md:self-start">
+            <Reveal delay={0.15}>
+              <dl className="divide-y divide-border rounded-3xl border border-card-border bg-card/50 p-6 text-sm">
+                <div className="pb-4">
+                  <dt className="text-muted">Status</dt>
+                  <dd className="mt-1 font-medium">{app.status}</dd>
+                  <dd className="mt-0.5 text-xs text-muted">{app.statusDetail}</dd>
+                </div>
+                <div className="py-4">
+                  <dt className="text-muted">Year</dt>
+                  <dd className="mt-1 font-medium">{app.year}</dd>
+                </div>
+                <div className="pt-4">
+                  <dt className="text-muted">Platform</dt>
+                  <dd className="mt-1 font-medium">
+                    {app.stack.some((s) => /macos/i.test(s)) ? "iOS + macOS" : "iOS"}
+                  </dd>
+                </div>
+              </dl>
             </Reveal>
           </div>
+        </div>
+
+        <div className="mx-auto mt-24 max-w-6xl px-6 md:px-10">
+          <Reveal>
+            <p className="mb-5 text-sm uppercase tracking-[0.2em] text-muted">More apps</p>
+            <ul className="grid gap-3 sm:grid-cols-3">
+              {more.map((m) => (
+                <li key={m.slug}>
+                  <Link
+                    href={`/apps/${m.slug}`}
+                    className="group flex items-center gap-4 rounded-2xl border border-card-border bg-card/50 p-4 transition-all hover:-translate-y-0.5 hover:bg-card"
+                  >
+                    <div className="w-12 shrink-0">
+                      <PhoneFrame app={m} src={m.screenshots[0]} sizes="60px" />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <p className="font-display text-xl leading-tight">{m.name}</p>
+                      <p className="truncate text-xs text-muted">{m.category}</p>
+                    </div>
+                    <ArrowUpRight size={16} className="text-muted transition-all group-hover:text-foreground" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </Reveal>
         </div>
       </main>
       <Footer />

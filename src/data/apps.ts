@@ -10,6 +10,7 @@ export type App = {
   statusDetail: string;
   category: string;
   year: string;
+  accent: string;
   screenshots: string[];
 };
 
@@ -33,10 +34,11 @@ export const apps: App[] = [
     statusDetail: "16 commits · self-authored code & design review passes",
     category: "Navigation / Social",
     year: "2026",
+    accent: "#38bdf8",
     screenshots: [
-      "/apps/convoy/01-welcome.png",
       "/apps/convoy/02-map.png",
       "/apps/convoy/07-drawer-full.png",
+      "/apps/convoy/01-welcome.png",
       "/apps/convoy/03-talk.png",
       "/apps/convoy/04-hazard.png",
       "/apps/convoy/10-planner.png",
@@ -63,6 +65,7 @@ export const apps: App[] = [
     statusDetail: "7 commits · design system fully implemented",
     category: "Social / Automotive",
     year: "2026",
+    accent: "#f59e0b",
     screenshots: [
       "/apps/grid/1-feed.png",
       "/apps/grid/2-generation.png",
@@ -91,6 +94,7 @@ export const apps: App[] = [
     statusDetail: "46 commits in one week · design decision pending",
     category: "Social",
     year: "2026",
+    accent: "#a78bfa",
     screenshots: ["/apps/moody/theme_editorial.png", "/apps/moody/theme_midnight.png", "/apps/moody/layout_orbit.png"],
   },
   {
@@ -113,6 +117,7 @@ export const apps: App[] = [
     statusDetail: "15 commits over 7 weeks · macOS target added",
     category: "Sports / Social",
     year: "2026",
+    accent: "#a3e635",
     screenshots: [],
   },
   {
@@ -134,6 +139,7 @@ export const apps: App[] = [
     statusDetail: "16 commits · pivoted from web to native mid-build",
     category: "Social",
     year: "2026",
+    accent: "#fb7185",
     screenshots: [],
   },
   {
@@ -155,6 +161,7 @@ export const apps: App[] = [
     statusDetail: "14 commits · provider adapters just landed",
     category: "Music / Social",
     year: "2026",
+    accent: "#34d399",
     screenshots: [],
   },
   {
@@ -176,6 +183,7 @@ export const apps: App[] = [
     statusDetail: "Full customer + admin flows built · App Store prep remaining",
     category: "Utility / Local business",
     year: "2026",
+    accent: "#f97316",
     screenshots: [],
   },
   {
@@ -197,6 +205,7 @@ export const apps: App[] = [
     statusDetail: "7 commits · verified working on real hardware",
     category: "Utility",
     year: "2026",
+    accent: "#e879f9",
     screenshots: [
       "/apps/inspo/demo-screenshot.png",
       "/apps/inspo/share-sheet.png",
@@ -222,6 +231,7 @@ export const apps: App[] = [
     statusDetail: "Demo-mode-first, seeded catalog and mock social graph",
     category: "Social / Reading",
     year: "2026",
+    accent: "#fbbf24",
     screenshots: [],
   },
   {
@@ -244,6 +254,7 @@ export const apps: App[] = [
     statusDetail: "3 commits · physical two-device testing pending",
     category: "Sports / Computer vision",
     year: "2026",
+    accent: "#22d3ee",
     screenshots: [
       "/apps/call-it/01-capture.png",
       "/apps/call-it/02-pairing.png",

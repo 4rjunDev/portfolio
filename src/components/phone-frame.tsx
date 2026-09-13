@@ -1,44 +1,36 @@
-import Image from "next/image";
 import { cn } from "@/lib/utils";
+import { AppScreen } from "@/components/app-screen";
+import type { App } from "@/data/apps";
 
 export function PhoneFrame({
+  app,
   src,
-  alt,
-  placeholder,
   className,
   priority,
+  sizes,
+  children,
 }: {
+  app: Pick<App, "name" | "category" | "accent">;
   src?: string;
-  alt: string;
-  placeholder?: { name: string; tagline: string };
   className?: string;
   priority?: boolean;
+  sizes?: string;
+  children?: React.ReactNode;
 }) {
   return (
     <div
       className={cn(
-        "relative aspect-[9/19.5] w-full overflow-hidden rounded-[2rem] border border-white/10 bg-neutral-950 shadow-2xl shadow-black/40",
+        "relative aspect-[9/19.5] w-full overflow-hidden rounded-[14%/6.5%] bg-[#0a0a0a] p-[3.2%] shadow-[0_30px_80px_-20px_rgba(0,0,0,0.7),inset_0_0_0_1px_rgba(255,255,255,0.12)]",
         className
       )}
     >
-      <div className="absolute inset-x-0 top-0 z-10 flex justify-center pt-2">
-        <div className="h-5 w-24 rounded-full bg-black/80" />
-      </div>
-      {src ? (
-        <Image
-          src={src}
-          alt={alt}
-          fill
-          priority={priority}
-          className="object-cover"
-          sizes="(max-width: 768px) 60vw, 320px"
-        />
-      ) : placeholder ? (
-        <div className="flex h-full w-full flex-col items-center justify-center gap-3 bg-gradient-to-br from-neutral-900 via-neutral-950 to-black px-6 text-center">
-          <span className="font-display text-2xl italic text-white/90">{placeholder.name}</span>
-          <span className="text-xs leading-relaxed text-white/40">{placeholder.tagline}</span>
+      <div className="relative h-full w-full overflow-hidden rounded-[11.5%/5.2%] bg-black">
+        {children ?? <AppScreen app={app} src={src} priority={priority} sizes={sizes} />}
+        <div className="pointer-events-none absolute inset-x-0 top-[2.2%] z-10 flex justify-center">
+          <div className="h-[3.4%] w-[30%] rounded-full bg-black" />
         </div>
-      ) : null}
+        <div className="pointer-events-none absolute inset-0 z-10 rounded-[11.5%/5.2%] bg-gradient-to-br from-white/10 via-transparent to-transparent" />
+      </div>
     </div>
   );
 }
