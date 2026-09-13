@@ -11,10 +11,13 @@ import { DuoFrame } from "@/components/duo-frame";
 import { PhoneFrame } from "@/components/phone-frame";
 import { StackPill } from "@/components/stack-pill";
 
-export const metadata: Metadata = {
-  title: "Lab",
-  description: "Experimental renders of ADHD Studios apps on a concept foldable iPhone Duo.",
-};
+export function generateMetadata(): Metadata {
+  if (!showLab) return {};
+  return {
+    title: "Lab",
+    description: "Experimental renders of ADHD Studios apps on a concept foldable iPhone Duo.",
+  };
+}
 
 const renders: { slug: string; left: number; right: number; note: string }[] = [
   { slug: "convoy", left: 1, right: 0, note: "Trip list on one pane, live map on the other — no drawer needed when the map has its own screen." },
