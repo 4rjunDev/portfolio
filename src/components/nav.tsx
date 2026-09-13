@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { useState } from "react";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 export function Nav() {
   const [hidden, setHidden] = useState(false);
@@ -40,6 +41,7 @@ export function Nav() {
           >
             Get in touch
           </a>
+          <ThemeToggle />
         </div>
       </nav>
     </motion.header>
