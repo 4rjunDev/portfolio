@@ -37,14 +37,9 @@ export function About() {
         </div>
       </Reveal>
       <Reveal delay={0.3}>
-        <div className="mt-12 flex items-center gap-6 text-sm">
-          <a
-            href="mailto:hershclaw@gmail.com"
-            className="rounded-full bg-foreground px-6 py-3 font-medium text-background transition-transform hover:scale-105"
-          >
-            hershclaw@gmail.com
-          </a>
-        </div>
+        <p className="mt-12 text-sm text-muted">
+          More apps are shipping — check back for updates.
+        </p>
       </Reveal>
     </section>
   );

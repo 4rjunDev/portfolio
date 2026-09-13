@@ -35,12 +35,12 @@ export function Nav() {
           <Link href="/#about" className="hover:text-foreground transition-colors">
             About
           </Link>
-          <a
-            href="mailto:hershclaw@gmail.com"
+          <Link
+            href="/#about"
             className="hidden sm:inline-flex items-center rounded-full border border-border px-4 py-1.5 hover:border-foreground hover:text-foreground transition-colors"
           >
             Get in touch
-          </a>
+          </Link>
           <ThemeToggle />
         </div>
       </nav>
