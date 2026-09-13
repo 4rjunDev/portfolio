@@ -16,14 +16,30 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3008";
+const description =
+  "An iOS studio building native SwiftUI apps at speed — social, sports, and utility products taken from a blank Xcode project to something you can put on a phone.";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl.replace(/\/?$/, "/")),
   title: {
-    default: "ADHD Studios — iOS Apps",
+    default: "ADHD Studios — Native iOS apps, shipped fast",
     template: "%s — ADHD Studios",
   },
-  description:
-    "ADHD Studios builds native iOS apps — social, sports, and utility products shipped fast, from prototype to TestFlight.",
-  metadataBase: new URL("https://adhdstudios.dev"),
+  description,
+  openGraph: {
+    type: "website",
+    siteName: "ADHD Studios",
+    title: "ADHD Studios",
+    description,
+    images: [{ url: "og/home.png", width: 1200, height: 630, alt: "ADHD Studios — native things, shipped fast." }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "ADHD Studios",
+    description,
+    images: ["og/home.png"],
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

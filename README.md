@@ -60,8 +60,12 @@ Project sites live under a sub-path (`/portfolio`), so the workflow sets `GITHUB
 ### Using a custom domain
 
 1. Settings → Pages → **Custom domain**, enter the domain, and add the DNS records GitHub shows you.
-2. In `deploy.yml`, delete the `GITHUB_PAGES_BASE_PATH` line (a custom domain serves from the root, so no prefix is needed).
+2. In `deploy.yml`, delete the `GITHUB_PAGES_BASE_PATH` line (a custom domain serves from the root, so no prefix is needed) and change `NEXT_PUBLIC_SITE_URL` to your domain.
 3. Push — the next deploy picks it up.
+
+### Link previews (Open Graph)
+
+Sharing a link in iMessage, Slack, X, etc. shows a designed 1200×630 card: `public/og/home.png` for the home page and `public/og/<slug>.png` for each app. The `og:image` URLs are built from `NEXT_PUBLIC_SITE_URL`, so set that to wherever the site is actually served (the Pages workflow does this automatically). The cards are generated with headless Chrome from the site's own fonts and screenshots; regenerate them if an app's screenshots or tagline change.
 
 ## Hosting on Vercel (free)
 
@@ -85,6 +89,7 @@ vercel --prod   # deploys to the production URL
 **Notes**
 
 - Do **not** set `GITHUB_PAGES_BASE_PATH` on Vercel — the site serves from the root there. If both hosts are live at once that's fine; the base path only applies inside the GitHub Actions build.
+- Do set `NEXT_PUBLIC_SITE_URL` (project → Settings → Environment Variables) to the Vercel URL or your custom domain so link-preview images resolve correctly.
 - Custom domain: project → **Settings → Domains**, add the domain, and follow the DNS instructions (Vercel handles HTTPS).
 - Optional: on Vercel you can remove `output: "export"` and `images: { unoptimized: true }` from `next.config.ts` to get Next's on-the-fly image optimization back. It isn't needed — the screenshots are already sized for the frames — but it's there if you want it.
 - The GitHub Pages workflow keeps running on every push regardless; delete `.github/workflows/deploy.yml` if you move to Vercel permanently.

@@ -29,6 +29,8 @@ jobs:
           # Project site → https://<owner>.github.io/<repo>. Remove this (or set it
           # to "") if you point a custom domain at the site.
           GITHUB_PAGES_BASE_PATH: /${{ github.event.repository.name }}
+          # Absolute origin used for Open Graph / social preview image URLs.
+          NEXT_PUBLIC_SITE_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}
       - uses: actions/upload-pages-artifact@v3
         with:
           path: out

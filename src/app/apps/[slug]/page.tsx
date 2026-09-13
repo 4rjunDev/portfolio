@@ -16,7 +16,14 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const app = getApp(slug);
   if (!app) return {};
-  return { title: app.name, description: app.tagline };
+  const title = app.displayName ?? app.name;
+  const image = { url: `og/${app.slug}.png`, width: 1200, height: 630, alt: `${app.name} — ${app.tagline}` };
+  return {
+    title,
+    description: app.tagline,
+    openGraph: { type: "article", siteName: "ADHD Studios", title: `${app.name} — ADHD Studios`, description: app.tagline, images: [image] },
+    twitter: { card: "summary_large_image", title: `${app.name} — ADHD Studios`, description: app.tagline, images: [image.url] },
+  };
 }
 
 export default async function AppDetail({ params }: { params: Promise<{ slug: string }> }) {
