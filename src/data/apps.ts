@@ -96,7 +96,7 @@ export const apps: App[] = [
     category: "Social",
     year: "2026",
     accent: "#a78bfa",
-    screenshots: ["/apps/moody/editorial.png", "/apps/moody/midnight.png", "/apps/moody/orbit.png"],
+    screenshots: ["/apps/moody/mood-editorial.png", "/apps/moody/mood-midnight.png", "/apps/moody/mood-orbit.png"],
   },
   {
     slug: "tennis-trivia",
