@@ -12,6 +12,7 @@ export type App = {
   year: string;
   accent: string;
   screenshots: string[];
+  landscapeScreens?: string[];
 };
 
 export const apps: App[] = [
@@ -95,7 +96,7 @@ export const apps: App[] = [
     category: "Social",
     year: "2026",
     accent: "#a78bfa",
-    screenshots: ["/apps/moody/theme_editorial.png", "/apps/moody/theme_midnight.png", "/apps/moody/layout_orbit.png"],
+    screenshots: ["/apps/moody/editorial.png", "/apps/moody/midnight.png", "/apps/moody/orbit.png"],
   },
   {
     slug: "tennis-trivia",
@@ -255,7 +256,8 @@ export const apps: App[] = [
     category: "Sports / Computer vision",
     year: "2026",
     accent: "#22d3ee",
-    screenshots: [
+    screenshots: ["/apps/call-it/06-pairing-portrait.png", "/apps/call-it/07-recordings-portrait.png"],
+    landscapeScreens: [
       "/apps/call-it/01-capture.png",
       "/apps/call-it/02-pairing.png",
       "/apps/call-it/03-host-waiting.png",

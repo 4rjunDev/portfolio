@@ -77,6 +77,11 @@ export default async function AppDetail({ params }: { params: Promise<{ slug: st
                 <PhoneFrame app={app} src={src} priority={i === 0} sizes="260px" />
               </div>
             ))}
+            {app.landscapeScreens?.map((src) => (
+              <div key={src} className="flex w-[476px] shrink-0 snap-center items-center sm:w-[563px]">
+                <PhoneFrame app={app} src={src} landscape sizes="563px" />
+              </div>
+            ))}
           </div>
         </Reveal>
 
