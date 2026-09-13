@@ -98,6 +98,18 @@ vercel --prod   # deploys to the production URL
 
 Because `npm run build` produces plain files in `out/`, the same output also works on Netlify, Cloudflare Pages, or anything that serves a folder.
 
+## Feature flags
+
+Flags live in [`src/lib/flags.ts`](src/lib/flags.ts) and are read from `NEXT_PUBLIC_*` env vars at build time, so flipping one means a rebuild (locally: restart `npm run dev`; on Pages: push or re-run the workflow).
+
+| Flag | Default | What it does |
+| --- | --- | --- |
+| `NEXT_PUBLIC_SHOW_LAB` | `false` | Shows the **Lab** page (`/lab`, iPhone Duo concept renders) and its nav link. When off, the link is hidden and `/lab` returns 404. |
+
+- Locally: create `.env.local` with `NEXT_PUBLIC_SHOW_LAB=true`.
+- GitHub Pages: edit the value under `env:` in [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml).
+- Vercel: project → Settings → Environment Variables.
+
 ## Project structure
 
 - `src/app` — routes: `/` (home) and `/apps/[slug]` (per-app case studies)

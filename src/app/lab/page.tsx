@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { notFound } from "next/navigation";
+import { showLab } from "@/lib/flags";
 import { ArrowUpRight } from "lucide-react";
 import { apps, getApp } from "@/data/apps";
 import { Nav } from "@/components/nav";
@@ -24,6 +26,7 @@ const renders: { slug: string; left: number; right: number; note: string }[] = [
 ];
 
 export default function Lab() {
+  if (!showLab) notFound();
   return (
     <div className="flex flex-1 flex-col">
       <Nav />

@@ -5,6 +5,7 @@ import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { useState } from "react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { AppsMenu } from "@/components/apps-menu";
+import { showLab } from "@/lib/flags";
 
 export function Nav() {
   const [hidden, setHidden] = useState(false);
@@ -32,11 +33,13 @@ export function Nav() {
         </Link>
         <div className="flex items-center gap-6 text-sm sm:gap-8">
           <AppsMenu open={menuOpen} setOpen={setMenuOpen} />
-          <Link href="/lab" className="flex items-center gap-1.5 text-muted hover:text-foreground transition-colors">
-            Lab
-            <span className="h-1.5 w-1.5 rounded-full bg-accent shadow-[0_0_8px_var(--accent)]" />
-          </Link>
-          <Link href="/#about" className="hidden text-muted hover:text-foreground transition-colors sm:inline">
+          {showLab && (
+            <Link href="/lab" className="flex items-center gap-1.5 text-muted hover:text-foreground transition-colors">
+              Lab
+              <span className="h-1.5 w-1.5 rounded-full bg-accent shadow-[0_0_8px_var(--accent)]" />
+            </Link>
+          )}
+          <Link href="/#about" className="text-muted hover:text-foreground transition-colors">
             About
           </Link>
           <ThemeToggle />
