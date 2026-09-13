@@ -1,6 +1,8 @@
 # Original brief
 
-Build a beautiful portfolio site showcasing the ~8 iOS apps Hershil has been building. Modern stack, thoughtful animations, mildly dynamic (not overdone).
+Build a beautiful portfolio site showcasing the ~8 iOS apps ADHD Studios has been building. Modern stack, thoughtful animations, mildly dynamic (not overdone).
+
+Branding note: the site is published under the studio name "ADHD Studios" rather than a personal name.
 
 ## Reference style
 

@@ -42,7 +42,7 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           className="font-display text-5xl leading-[1.05] tracking-tight sm:text-6xl md:text-7xl lg:text-8xl"
         >
-          Hershil builds
+          ADHD Studios builds
           <br />
           <span className="italic text-muted">native things,</span>
           <br />

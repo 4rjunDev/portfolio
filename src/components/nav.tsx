@@ -26,7 +26,7 @@ export function Nav() {
     >
       <nav className="mx-auto max-w-6xl px-6 md:px-10 h-16 flex items-center justify-between">
         <Link href="/" className="font-display text-lg tracking-tight">
-          Hershil
+          ADHD Studios
         </Link>
         <div className="flex items-center gap-8 text-sm text-muted">
           <Link href="/#work" className="hover:text-foreground transition-colors">

@@ -1,6 +1,6 @@
-# Hershil — Portfolio
+# ADHD Studios — Portfolio
 
-A portfolio site showcasing the iOS apps Hershil has been building — Convoy, GRID, Moody, Deuce (Tennis Trivia), Come Thru, On Loop, Restrung, Inspo, Bookmarked, and Call It.
+A portfolio site showcasing the iOS apps ADHD Studios has been building — Convoy, GRID, Moody, Deuce (Tennis Trivia), Come Thru, On Loop, Restrung, Inspo, Bookmarked, and Call It.
 
 Built with Next.js 15 (App Router), TypeScript, Tailwind CSS v4, Framer Motion, and Lenis for smooth scroll.
 

@@ -18,12 +18,12 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "Hershil — iOS Developer",
-    template: "%s — Hershil",
+    default: "ADHD Studios — iOS Apps",
+    template: "%s — ADHD Studios",
   },
   description:
-    "Hershil builds native iOS apps — social, sports, and utility products shipped fast, from prototype to TestFlight.",
-  metadataBase: new URL("https://hershil.dev"),
+    "ADHD Studios builds native iOS apps — social, sports, and utility products shipped fast, from prototype to TestFlight.",
+  metadataBase: new URL("https://adhdstudios.dev"),
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

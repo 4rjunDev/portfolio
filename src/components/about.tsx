@@ -16,7 +16,7 @@ export function About() {
       </Reveal>
       <Reveal delay={0.1}>
         <p className="max-w-2xl text-lg leading-relaxed text-muted">
-          Hershil is an iOS developer who ships fast — moving from idea to a
+          ADHD Studios is an iOS studio that ships fast — moving from idea to a
           working SwiftUI prototype in days, usually backed by Supabase and
           built with demo modes so every app is navigable before the backend
           is even wired up. The apps span social products, sports tools, and
