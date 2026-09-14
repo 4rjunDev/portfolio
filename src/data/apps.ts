@@ -13,6 +13,8 @@ export type App = {
   accent: string;
   screenshots: string[];
   landscapeScreens?: string[];
+  /** Screenshots are simulator captures that already show the Dynamic Island. */
+  islandInCapture?: boolean;
 };
 
 export const apps: App[] = [
@@ -35,6 +37,7 @@ export const apps: App[] = [
     statusDetail: "16 commits · self-authored code & design review passes",
     category: "Navigation / Social",
     year: "2026",
+    islandInCapture: true,
     accent: "#38bdf8",
     screenshots: [
       "/apps/convoy/02-map.webp",
@@ -66,6 +69,7 @@ export const apps: App[] = [
     statusDetail: "7 commits · design system fully implemented",
     category: "Social / Automotive",
     year: "2026",
+    islandInCapture: true,
     accent: "#f59e0b",
     screenshots: [
       "/apps/grid/1-feed.webp",
@@ -162,6 +166,7 @@ export const apps: App[] = [
     statusDetail: "14 commits · provider adapters just landed",
     category: "Music / Social",
     year: "2026",
+    islandInCapture: true,
     accent: "#34d399",
     screenshots: ["/apps/on-loop/01-onboarding.webp"],
   },
@@ -206,6 +211,7 @@ export const apps: App[] = [
     statusDetail: "7 commits · verified working on real hardware",
     category: "Utility",
     year: "2026",
+    islandInCapture: true,
     accent: "#e879f9",
     screenshots: [
       "/apps/inspo/demo-screenshot.webp",
@@ -232,6 +238,7 @@ export const apps: App[] = [
     statusDetail: "Demo-mode-first, seeded catalog and mock social graph",
     category: "Social / Reading",
     year: "2026",
+    islandInCapture: true,
     accent: "#fbbf24",
     screenshots: ["/apps/bookmarked/01-home.webp"],
   },
@@ -255,6 +262,7 @@ export const apps: App[] = [
     statusDetail: "3 commits · physical two-device testing pending",
     category: "Sports / Computer vision",
     year: "2026",
+    islandInCapture: true,
     accent: "#22d3ee",
     screenshots: ["/apps/call-it/06-pairing-portrait.webp", "/apps/call-it/07-recordings-portrait.webp"],
     landscapeScreens: [
