@@ -2,8 +2,9 @@ import { cn } from "@/lib/utils";
 import { AppScreen } from "@/components/app-screen";
 import type { App } from "@/data/apps";
 
-// Proportions from the iPhone Pro body (71.9 x 150 mm), bezel, corner radii,
-// and Dynamic Island, expressed as percentages so any frame size stays true.
+// Proportions from the iPhone Pro body (71.9 x 150 mm), bezel and corner radii,
+// expressed as percentages so any frame size stays true. No drawn Dynamic Island:
+// the screenshot is the full screen, so simulator captures show their own.
 export function PhoneFrame({
   app,
   src,
@@ -13,7 +14,7 @@ export function PhoneFrame({
   landscape = false,
   children,
 }: {
-  app: Pick<App, "name" | "category" | "accent" | "bakedIsland">;
+  app: Pick<App, "name" | "category" | "accent">;
   src?: string;
   className?: string;
   priority?: boolean;
@@ -21,7 +22,6 @@ export function PhoneFrame({
   landscape?: boolean;
   children?: React.ReactNode;
 }) {
-  const drawIsland = !(src && app.bakedIsland);
   return (
     <div
       className={cn(
@@ -43,12 +43,6 @@ export function PhoneFrame({
         )}
       >
         {children ?? <AppScreen app={app} src={src} priority={priority} sizes={sizes} />}
-        {drawIsland &&
-          (landscape ? (
-            <div className="pointer-events-none absolute left-[1.3%] top-1/2 z-10 h-[31%] w-[4.2%] min-w-[6px] -translate-y-1/2 rounded-full bg-black" />
-          ) : (
-            <div className="pointer-events-none absolute left-1/2 top-[1.3%] z-10 h-[4.2%] w-[31%] -translate-x-1/2 rounded-full bg-black" />
-          ))}
         <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-br from-white/10 via-transparent to-transparent" />
       </div>
     </div>

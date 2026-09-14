@@ -1,6 +1,7 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { preload } from "react-dom";
 import Link from "next/link";
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
@@ -16,6 +17,12 @@ export function Showcase() {
   const ref = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(0);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] });
+
+  // Every lead screenshot is needed within one scroll of the showcase; fetch them all up
+  // front (they're small WebPs) so phones never pop in late as the index changes.
+  useEffect(() => {
+    for (const a of apps) if (a.screenshots[0]) preload(a.screenshots[0], { as: "image" });
+  }, []);
 
   useMotionValueEvent(scrollYProgress, "change", (v) => {
     const idx = Math.min(apps.length - 1, Math.max(0, Math.floor(v * apps.length)));
@@ -94,7 +101,7 @@ export function Showcase() {
               transition={{ duration: 0.5, ease }}
               className="absolute left-[6%] top-1/2 hidden w-[32%] -translate-y-1/2 -rotate-6 md:block"
             >
-              <PhoneFrame app={prev} src={prev.screenshots[0]} sizes="200px" />
+              <PhoneFrame app={prev} src={prev.screenshots[0]} sizes="200px" priority />
             </motion.div>
 
             <motion.div
@@ -104,7 +111,7 @@ export function Showcase() {
               transition={{ duration: 0.5, ease }}
               className="absolute right-[10%] top-1/2 hidden w-[32%] -translate-y-1/2 rotate-6 md:block"
             >
-              <PhoneFrame app={next} src={next.screenshots[0]} sizes="200px" />
+              <PhoneFrame app={next} src={next.screenshots[0]} sizes="200px" priority />
             </motion.div>
 
             <div className="relative z-10 h-full max-h-[78vh] aspect-[9/19.5]">

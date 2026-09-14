@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 
 const GROUPS: { match: RegExp; color: string; label: string }[] = [
   { match: /swift|observation|xcodegen|swiftdata/i, color: "#f97316", label: "Swift" },
-  { match: /supabase|postgres|rls|edge function|apns/i, color: "#3ecf8e", label: "Backend" },
+  { match: /supabase|postgres|rls|edge function|apns|realtime/i, color: "#3ecf8e", label: "Backend" },
   { match: /maplibre|ferrostar|valhalla|corelocation/i, color: "#2dd4bf", label: "Maps" },
   { match: /kit|store|avfoundation|multipeer|background|keychain|extension|apple|macos|xcuitest|speech|oauth/i, color: "#60a5fa", label: "Apple" },
   { match: /open library|api|oklch|design/i, color: "#e879f9", label: "APIs" },
