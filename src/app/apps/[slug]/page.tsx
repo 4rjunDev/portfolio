@@ -81,12 +81,12 @@ export default async function AppDetail({ params }: { params: Promise<{ slug: st
             <div className="shrink-0 w-[calc((100vw-72rem)/2-1.5rem)] max-md:hidden" />
             {screens.map((src, i) => (
               <div key={src ?? i} className="w-[220px] shrink-0 snap-center sm:w-[260px]">
-                <PhoneFrame app={app} src={src} priority={i === 0} sizes="260px" />
+                <PhoneFrame app={app} src={src} priority sizes="260px" />
               </div>
             ))}
             {app.landscapeScreens?.map((src) => (
               <div key={src} className="flex w-[476px] shrink-0 snap-center items-center sm:w-[563px]">
-                <PhoneFrame app={app} src={src} landscape sizes="563px" />
+                <PhoneFrame app={app} src={src} landscape priority sizes="563px" />
               </div>
             ))}
           </div>
@@ -131,7 +131,7 @@ export default async function AppDetail({ params }: { params: Promise<{ slug: st
                 <div className="pt-4">
                   <dt className="text-muted">Platform</dt>
                   <dd className="mt-1 font-medium">
-                    {app.stack.some((s) => /macos/i.test(s)) ? "iOS + macOS" : "iOS"}
+                    {app.slug === "tennis-trivia" ? "iOS + macOS" : "iOS"}
                   </dd>
                 </div>
               </dl>

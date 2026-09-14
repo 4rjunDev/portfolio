@@ -39,7 +39,12 @@ export function PhoneFrame({
       <div
         className={cn(
           "absolute overflow-hidden bg-black",
-          landscape ? "inset-[1.06%] rounded-[6.4%/13.5%]" : "inset-[2.2%] rounded-[13.5%/6.4%]"
+          // Percentage insets resolve x against width and y against height, so a single
+          // value gives a bezel ~2.1x thicker top/bottom than the sides. These pairs are
+          // both 2.2% of the short edge in pixels.
+          landscape
+            ? "inset-x-[1.055%] inset-y-[2.2%] rounded-[6.4%/13.5%]"
+            : "inset-x-[2.2%] inset-y-[1.055%] rounded-[13.5%/6.4%]"
         )}
       >
         {children ?? <AppScreen app={app} src={src} priority={priority} sizes={sizes} />}

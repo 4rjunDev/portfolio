@@ -21,7 +21,8 @@ export function Showcase() {
   // Every lead screenshot is needed within one scroll of the showcase; fetch them all up
   // front (they're small WebPs) so phones never pop in late as the index changes.
   useEffect(() => {
-    for (const a of apps) if (a.screenshots[0]) preload(a.screenshots[0], { as: "image" });
+    const base = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+    for (const a of apps) if (a.screenshots[0]) preload(`${base}${a.screenshots[0]}`, { as: "image" });
   }, []);
 
   useMotionValueEvent(scrollYProgress, "change", (v) => {
