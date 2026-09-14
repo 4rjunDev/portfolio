@@ -92,7 +92,7 @@ export function Showcase() {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 0.55, x: 0 }}
               transition={{ duration: 0.5, ease }}
-              className="absolute left-[6%] top-1/2 hidden w-[32%] -translate-y-1/2 -rotate-6 blur-[0.4px] md:block"
+              className="absolute left-[6%] top-1/2 hidden w-[32%] -translate-y-1/2 -rotate-6 md:block"
             >
               <PhoneFrame app={prev} src={prev.screenshots[0]} sizes="200px" />
             </motion.div>
@@ -102,13 +102,13 @@ export function Showcase() {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 0.55, x: 0 }}
               transition={{ duration: 0.5, ease }}
-              className="absolute right-[10%] top-1/2 hidden w-[32%] -translate-y-1/2 rotate-6 blur-[0.4px] md:block"
+              className="absolute right-[10%] top-1/2 hidden w-[32%] -translate-y-1/2 rotate-6 md:block"
             >
               <PhoneFrame app={next} src={next.screenshots[0]} sizes="200px" />
             </motion.div>
 
             <div className="relative z-10 h-full max-h-[78vh] aspect-[9/19.5]">
-              <PhoneFrame app={app} src={undefined}>
+              <PhoneFrame app={app} src={app.screenshots[0]}>
                 <AnimatePresence mode="popLayout" initial={false}>
                   <motion.div
                     key={app.slug}

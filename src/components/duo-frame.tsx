@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 import { AppScreen } from "@/components/app-screen";
 import type { App } from "@/data/apps";
 
-type Screen = Pick<App, "name" | "category" | "accent">;
+type Screen = Pick<App, "name" | "category" | "accent" | "bakedIsland">;
 
 // Concept foldable: two iPhone-Pro-proportioned panes (71.9 x 150 each) that
 // open book-style around a central hinge into a near-square inner display.
@@ -26,10 +26,10 @@ export function DuoFrame({
       <div
         className="flex w-full transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] [transform-style:preserve-3d] group-hover:[transform:rotateX(3deg)]"
       >
-        <Half side="left" angle={angle}>
+        <Half side="left" angle={angle} drawIsland={!(left && app.bakedIsland)}>
           <AppScreen app={app} src={left} sizes={sizes} />
         </Half>
-        <Half side="right" angle={angle}>
+        <Half side="right" angle={angle} drawIsland={false}>
           <AppScreen app={app} src={right} sizes={sizes} />
         </Half>
       </div>
@@ -40,18 +40,17 @@ export function DuoFrame({
         style={{
           background:
             "linear-gradient(90deg, rgba(0,0,0,0.55), rgba(255,255,255,0.10) 45%, rgba(255,255,255,0.10) 55%, rgba(0,0,0,0.55))",
-          filter: "blur(0.4px)",
         }}
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute -bottom-[6%] left-[8%] right-[8%] h-[10%] rounded-[50%] bg-black/60 blur-2xl"
+        className="pointer-events-none absolute -bottom-[6%] left-[8%] right-[8%] h-[10%] rounded-[50%] [background:radial-gradient(ellipse,rgba(0,0,0,0.6),transparent_70%)]"
       />
     </div>
   );
 }
 
-function Half({ side, angle, children }: { side: "left" | "right"; angle: number; children: React.ReactNode }) {
+function Half({ side, angle, drawIsland, children }: { side: "left" | "right"; angle: number; drawIsland: boolean; children: React.ReactNode }) {
   const isLeft = side === "left";
   return (
     <div
@@ -80,7 +79,7 @@ function Half({ side, angle, children }: { side: "left" | "right"; angle: number
           )}
         />
       </div>
-      {isLeft && (
+      {isLeft && drawIsland && (
         <div className="pointer-events-none absolute left-[6%] top-[1.3%] z-10 h-[4.2%] w-[31%] rounded-full bg-black" />
       )}
     </div>

@@ -13,6 +13,8 @@ export type App = {
   accent: string;
   screenshots: string[];
   landscapeScreens?: string[];
+  /** Real simulator captures already contain the Dynamic Island; don't draw a second one. */
+  bakedIsland?: boolean;
 };
 
 export const apps: App[] = [
@@ -35,6 +37,7 @@ export const apps: App[] = [
     statusDetail: "16 commits · self-authored code & design review passes",
     category: "Navigation / Social",
     year: "2026",
+    bakedIsland: true,
     accent: "#38bdf8",
     screenshots: [
       "/apps/convoy/02-map.png",
@@ -66,6 +69,7 @@ export const apps: App[] = [
     statusDetail: "7 commits · design system fully implemented",
     category: "Social / Automotive",
     year: "2026",
+    bakedIsland: true,
     accent: "#f59e0b",
     screenshots: [
       "/apps/grid/1-feed.png",
@@ -206,6 +210,7 @@ export const apps: App[] = [
     statusDetail: "7 commits · verified working on real hardware",
     category: "Utility",
     year: "2026",
+    bakedIsland: true,
     accent: "#e879f9",
     screenshots: [
       "/apps/inspo/demo-screenshot.png",
@@ -255,6 +260,7 @@ export const apps: App[] = [
     statusDetail: "3 commits · physical two-device testing pending",
     category: "Sports / Computer vision",
     year: "2026",
+    bakedIsland: true,
     accent: "#22d3ee",
     screenshots: ["/apps/call-it/06-pairing-portrait.png", "/apps/call-it/07-recordings-portrait.png"],
     landscapeScreens: [

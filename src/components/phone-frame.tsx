@@ -13,7 +13,7 @@ export function PhoneFrame({
   landscape = false,
   children,
 }: {
-  app: Pick<App, "name" | "category" | "accent">;
+  app: Pick<App, "name" | "category" | "accent" | "bakedIsland">;
   src?: string;
   className?: string;
   priority?: boolean;
@@ -21,6 +21,7 @@ export function PhoneFrame({
   landscape?: boolean;
   children?: React.ReactNode;
 }) {
+  const drawIsland = !(src && app.bakedIsland);
   return (
     <div
       className={cn(
@@ -42,11 +43,12 @@ export function PhoneFrame({
         )}
       >
         {children ?? <AppScreen app={app} src={src} priority={priority} sizes={sizes} />}
-        {landscape ? (
-          <div className="pointer-events-none absolute left-[1.3%] top-1/2 z-10 h-[31%] w-[4.2%] min-w-[6px] -translate-y-1/2 rounded-full bg-black" />
-        ) : (
-          <div className="pointer-events-none absolute left-1/2 top-[1.3%] z-10 h-[4.2%] w-[31%] -translate-x-1/2 rounded-full bg-black" />
-        )}
+        {drawIsland &&
+          (landscape ? (
+            <div className="pointer-events-none absolute left-[1.3%] top-1/2 z-10 h-[31%] w-[4.2%] min-w-[6px] -translate-y-1/2 rounded-full bg-black" />
+          ) : (
+            <div className="pointer-events-none absolute left-1/2 top-[1.3%] z-10 h-[4.2%] w-[31%] -translate-x-1/2 rounded-full bg-black" />
+          ))}
         <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-br from-white/10 via-transparent to-transparent" />
       </div>
     </div>

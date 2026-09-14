@@ -18,18 +18,29 @@ export function Hero() {
   const inView = useInView(ref, { margin: "200px 0px 200px 0px" });
 
   return (
-    <section ref={ref} className="relative flex min-h-screen flex-col justify-between overflow-hidden px-6 pt-32 pb-10 md:px-10">
+    <section ref={ref} className="relative isolate flex min-h-screen flex-col justify-between overflow-hidden px-6 pt-32 pb-10 md:px-10">
       <div aria-hidden className="dot-grid pointer-events-none absolute inset-0 -z-10" />
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
+        {/*
+          No `filter: blur()` here on purpose: WebKit re-rasterizes large blurs on the CPU
+          every frame, which produced 200-600ms hangs while scrolling past the hero. A soft
+          multi-stop radial gradient gives the same glow with zero filter cost.
+        */}
         <motion.div
-          className="absolute -top-32 left-1/3 h-[34rem] w-[34rem] rounded-full opacity-25 blur-[130px]"
-          style={{ background: "radial-gradient(circle, var(--accent), transparent 70%)" }}
+          className="absolute -top-48 left-1/4 h-[48rem] w-[48rem] rounded-full opacity-30 will-change-transform"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(255,106,51,0.7) 0%, rgba(255,106,51,0.35) 22%, rgba(255,106,51,0.1) 42%, transparent 65%)",
+          }}
           animate={inView ? { x: [0, 40, -20, 0], y: [0, 30, -10, 0] } : { x: 0, y: 0 }}
           transition={inView ? { duration: 26, repeat: Infinity, ease: "easeInOut" } : { duration: 0.5 }}
         />
         <motion.div
-          className="absolute bottom-10 right-1/4 h-[26rem] w-[26rem] rounded-full opacity-15 blur-[120px]"
-          style={{ background: "radial-gradient(circle, #4f7cff, transparent 70%)" }}
+          className="absolute -bottom-24 right-[15%] h-[38rem] w-[38rem] rounded-full opacity-20 will-change-transform"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(79,124,255,0.7) 0%, rgba(79,124,255,0.32) 22%, rgba(79,124,255,0.1) 42%, transparent 65%)",
+          }}
           animate={inView ? { x: [0, -30, 20, 0], y: [0, -20, 10, 0] } : { x: 0, y: 0 }}
           transition={inView ? { duration: 30, repeat: Infinity, ease: "easeInOut" } : { duration: 0.5 }}
         />
