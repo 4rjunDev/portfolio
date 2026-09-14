@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { apps } from "@/data/apps";
 import { StackMarquee } from "@/components/stack-marquee";
@@ -12,6 +12,10 @@ export function Hero() {
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const y = useTransform(scrollYProgress, [0, 1], [0, 120]);
   const opacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
+  // The background blobs are infinite, JS-driven (not CSS) animations — left running they
+  // burn a requestAnimationFrame tick for the entire time the tab is open, even hundreds of
+  // vh after the user has scrolled away. Only animate while the hero is actually visible.
+  const inView = useInView(ref, { margin: "200px 0px 200px 0px" });
 
   return (
     <section ref={ref} className="relative flex min-h-screen flex-col justify-between overflow-hidden px-6 pt-32 pb-10 md:px-10">
@@ -20,14 +24,14 @@ export function Hero() {
         <motion.div
           className="absolute -top-32 left-1/3 h-[34rem] w-[34rem] rounded-full opacity-25 blur-[130px]"
           style={{ background: "radial-gradient(circle, var(--accent), transparent 70%)" }}
-          animate={{ x: [0, 40, -20, 0], y: [0, 30, -10, 0] }}
-          transition={{ duration: 26, repeat: Infinity, ease: "easeInOut" }}
+          animate={inView ? { x: [0, 40, -20, 0], y: [0, 30, -10, 0] } : { x: 0, y: 0 }}
+          transition={inView ? { duration: 26, repeat: Infinity, ease: "easeInOut" } : { duration: 0.5 }}
         />
         <motion.div
           className="absolute bottom-10 right-1/4 h-[26rem] w-[26rem] rounded-full opacity-15 blur-[120px]"
           style={{ background: "radial-gradient(circle, #4f7cff, transparent 70%)" }}
-          animate={{ x: [0, -30, 20, 0], y: [0, -20, 10, 0] }}
-          transition={{ duration: 30, repeat: Infinity, ease: "easeInOut" }}
+          animate={inView ? { x: [0, -30, 20, 0], y: [0, -20, 10, 0] } : { x: 0, y: 0 }}
+          transition={inView ? { duration: 30, repeat: Infinity, ease: "easeInOut" } : { duration: 0.5 }}
         />
       </div>
 
