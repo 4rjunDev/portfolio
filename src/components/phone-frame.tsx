@@ -25,16 +25,20 @@ export function PhoneFrame({
     <div
       className={cn(
         "relative w-full overflow-hidden bg-[#0a0a0a] shadow-[0_30px_80px_-20px_rgba(0,0,0,0.7),inset_0_0_0_1px_rgba(255,255,255,0.12)]",
-        landscape
-          ? "aspect-[150/71.9] rounded-[7.2%/15%] p-[1.06%]"
-          : "aspect-[71.9/150] rounded-[15%/7.2%] p-[2.2%]",
+        landscape ? "aspect-[150/71.9] rounded-[7.2%/15%]" : "aspect-[71.9/150] rounded-[15%/7.2%]",
         className
       )}
     >
+      {/*
+        Absolutely positioned with a percentage `inset` rather than padding + h-full/w-full:
+        WebKit fails to subtract the parent's padding when resolving a percentage *height*
+        here (width is fine), which overflows this pane past the rounded clip and squares
+        off the bottom corners. `inset` isn't affected by that bug in any engine.
+      */}
       <div
         className={cn(
-          "relative h-full w-full overflow-hidden bg-black",
-          landscape ? "rounded-[6.4%/13.5%]" : "rounded-[13.5%/6.4%]"
+          "absolute overflow-hidden bg-black",
+          landscape ? "inset-[1.06%] rounded-[6.4%/13.5%]" : "inset-[2.2%] rounded-[13.5%/6.4%]"
         )}
       >
         {children ?? <AppScreen app={app} src={src} priority={priority} sizes={sizes} />}

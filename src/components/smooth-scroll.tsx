@@ -10,8 +10,11 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const lenis = new Lenis({
-      duration: 1.1,
-      easing: (t) => 1 - Math.pow(1 - t, 3),
+      // Trackpads already give native momentum; a long duration here re-interpolates on
+      // top of that and reads as sluggish/delayed rather than smooth. 0.7 keeps a bit of
+      // glide without fighting the OS's own momentum.
+      duration: 0.7,
+      easing: (t) => 1 - Math.pow(1 - t, 2),
       smoothWheel: true,
     });
     lenisRef.current = lenis;
