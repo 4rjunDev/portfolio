@@ -264,6 +264,28 @@ export const apps: App[] = [
       "/apps/call-it/05-test-signal.png",
     ],
   },
+  {
+    slug: "revue",
+    name: "Revue",
+    tagline: "Letterboxd for movies and TV — log, rate, and see what friends watched.",
+    description:
+      "Revue is a movie and TV tracker with a mutual-friend social feed: search titles via TMDB, log what you watched with a thumbs rating, and see reviews from friends who watched the same thing. This is the native SwiftUI client — one of three (alongside a Next.js web app and a Flutter app) sharing the same Supabase backend and users.",
+    features: [
+      "TMDB search with title detail pages",
+      "Log a title as watched — tag venue (home / theater)",
+      "Thumbs up/down rating, would-watch-again, and all-time-favorite flags",
+      "Friend feed via a shared get_friend_feed RPC — same call as web and Flutter",
+      "Public profile with your logs and ratings",
+      "One Supabase backend shared across all three clients",
+    ],
+    stack: ["SwiftUI", "Swift Package Manager", "Supabase", "TMDB API"],
+    status: "Single-commit MVP",
+    statusDetail: "Auth, feed, search, log, and profile flows built · no screenshots yet",
+    category: "Social / Entertainment",
+    year: "2026",
+    accent: "#ef4444",
+    screenshots: [],
+  },
 ];
 
 export function getApp(slug: string) {
