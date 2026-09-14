@@ -163,7 +163,7 @@ export const apps: App[] = [
     category: "Music / Social",
     year: "2026",
     accent: "#34d399",
-    screenshots: [],
+    screenshots: ["/apps/on-loop/01-onboarding.webp"],
   },
   {
     slug: "restrung",
@@ -233,7 +233,7 @@ export const apps: App[] = [
     category: "Social / Reading",
     year: "2026",
     accent: "#fbbf24",
-    screenshots: [],
+    screenshots: ["/apps/bookmarked/01-home.webp"],
   },
   {
     slug: "call-it",
