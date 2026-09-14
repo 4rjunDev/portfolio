@@ -31,8 +31,6 @@ export function Showcase() {
   });
 
   const app = apps[active];
-  const prev = apps[(active - 1 + apps.length) % apps.length];
-  const next = apps[(active + 1) % apps.length];
 
   const jumpTo = (i: number) => {
     const el = ref.current;
@@ -95,41 +93,14 @@ export function Showcase() {
           </div>
 
           <div className="order-1 relative flex h-[44vh] items-center justify-center md:order-2 md:h-[78vh]">
-            <motion.div
-              key={`prev-${prev.slug}`}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 0.55, x: 0 }}
-              transition={{ duration: 0.5, ease }}
-              className="absolute left-[6%] top-1/2 hidden w-[32%] -translate-y-1/2 -rotate-6 md:block"
-            >
-              <PhoneFrame app={prev} src={prev.screenshots[0]} sizes="200px" priority />
-            </motion.div>
-
-            <motion.div
-              key={`next-${next.slug}`}
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 0.55, x: 0 }}
-              transition={{ duration: 0.5, ease }}
-              className="absolute right-[10%] top-1/2 hidden w-[32%] -translate-y-1/2 rotate-6 md:block"
-            >
-              <PhoneFrame app={next} src={next.screenshots[0]} sizes="200px" priority />
-            </motion.div>
-
+            <div className="absolute left-[6%] top-1/2 hidden w-[32%] -translate-y-1/2 -rotate-6 opacity-55 md:block">
+              <ScreenStack active={(active - 1 + apps.length) % apps.length} sizes="200px" />
+            </div>
+            <div className="absolute right-[10%] top-1/2 hidden w-[32%] -translate-y-1/2 rotate-6 opacity-55 md:block">
+              <ScreenStack active={(active + 1) % apps.length} sizes="200px" />
+            </div>
             <div className="relative z-10 h-full max-h-[78vh] aspect-[9/19.5]">
-              <PhoneFrame app={app} src={app.screenshots[0]}>
-                <AnimatePresence mode="popLayout" initial={false}>
-                  <motion.div
-                    key={app.slug}
-                    initial={{ opacity: 0, scale: 1.04 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.98 }}
-                    transition={{ duration: 0.45, ease }}
-                    className="absolute inset-0"
-                  >
-                    <AppScreen app={app} src={app.screenshots[0]} sizes="360px" priority />
-                  </motion.div>
-                </AnimatePresence>
-              </PhoneFrame>
+              <ScreenStack active={active} sizes="360px" />
             </div>
           </div>
         </div>
@@ -163,5 +134,26 @@ export function Showcase() {
         </ol>
       </div>
     </section>
+  );
+}
+
+// Every app's screen stays mounted inside one frame and only opacity changes, so
+// switching apps never re-mounts (and re-decodes) an <img> — which read as the
+// image "loading" on each change, especially in Safari.
+function ScreenStack({ active, sizes }: { active: number; sizes: string }) {
+  const app = apps[active];
+  return (
+    <PhoneFrame app={app} src={app.screenshots[0]}>
+      {apps.map((a, i) => (
+        <div
+          key={a.slug}
+          aria-hidden={i !== active}
+          className="absolute inset-0 transition-opacity duration-300 ease-out"
+          style={{ opacity: i === active ? 1 : 0 }}
+        >
+          <AppScreen app={a} src={a.screenshots[0]} sizes={sizes} priority />
+        </div>
+      ))}
+    </PhoneFrame>
   );
 }
