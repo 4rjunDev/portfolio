@@ -65,7 +65,7 @@ Project sites live under a sub-path (`/portfolio`), so the workflow sets `GITHUB
 
 ### Link previews (Open Graph)
 
-Sharing a link in iMessage, Slack, X, etc. shows a designed 1200×630 card: `public/og/home.png` for the home page and `public/og/<slug>.png` for each app. The `og:image` URLs are built from `NEXT_PUBLIC_SITE_URL`, so set that to wherever the site is actually served (the Pages workflow does this automatically). The cards are generated with headless Chrome from the site's own fonts and screenshots; regenerate them if an app's screenshots or tagline change.
+Sharing a link in iMessage, Slack, X, etc. shows a designed 1200×630 card: `public/og/home.png` for the home page and `public/og/<slug>.png` for each app. The `og:image` URLs are built from `NEXT_PUBLIC_SITE_URL`, so set that to wherever the site is actually served (the Pages workflow does this automatically). Regenerate them with `npm run og` whenever an app's screenshots or tagline change (`npm run icons` rebuilds the favicon / touch icon). Both use Playwright — run `npx playwright install chromium` once first.
 
 ## Hosting on Vercel (free)
 
@@ -116,6 +116,8 @@ Flags live in [`src/lib/flags.ts`](src/lib/flags.ts) and are read from `NEXT_PUB
 - `src/components` — hero, sticky scroll showcase, Apps dropdown, phone frames, stack pills, etc.
 - `src/data/apps.ts` — hardcoded structured content for every app (no CMS)
 - `public/apps/<slug>/` — real screenshots pulled from each app's repo, where available
+- `scripts/` — `og.mjs` (link-preview cards), `icon.mjs` (favicon), `capture.sh` (simulator screenshots)
+- `src/app/sitemap.ts`, `robots.ts` — generated at build from `NEXT_PUBLIC_SITE_URL`
 - `docs/demo.mp4` — screen-recorded walkthrough
 
 ## Content

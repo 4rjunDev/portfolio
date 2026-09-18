@@ -6,7 +6,9 @@
     "dev": "next dev -p ${PORT:-3008}",
     "build": "next build",
     "start": "serve out -l ${PORT:-3008}",
-    "lint": "eslint"
+    "lint": "eslint",
+    "og": "node scripts/og.mjs",
+    "icons": "node scripts/icon.mjs"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",
@@ -26,6 +28,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.3.5",
+    "playwright": "^1.63.0",
     "serve": "^14.2.6",
     "tailwindcss": "^4",
     "typescript": "^5"
