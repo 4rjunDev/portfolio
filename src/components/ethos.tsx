@@ -12,15 +12,34 @@ export function EthosPill({ className }: { className?: string }) {
       )}
     >
       <span className="h-1 w-1 rounded-full bg-accent" />
-      Quiet social
+      Properly social
     </span>
   );
 }
 
 const pairs: [string, string][] = [
-  ["Passive presence", "active posting"],
-  ["Ambient intimacy", "engagement metrics"],
-  ["People who know you", "an audience"],
+  ["Sharing", "posting"],
+  ["Friends", "followers"],
+  ["Your actual life", "the highlight reel"],
+  ["For yourself first", "for validation"],
+];
+
+const inPractice: { slug: string; irl: string; app: string }[] = [
+  {
+    slug: "moody",
+    irl: "\u201cHow are you, actually?\u201d",
+    app: "One colour, word, or face for how you feel right now. No photo to stage, no caption to workshop \u2014 just the honest answer, for the friends who\u2019d ask.",
+  },
+  {
+    slug: "come-thru",
+    irl: "\u201cWe\u2019re at the park, come by.\u201d",
+    app: "Say where you\u2019ll be and who\u2019s welcome. Not an event, not an announcement \u2014 the same open invite you\u2019d throw out in a group chat.",
+  },
+  {
+    slug: "on-loop",
+    irl: "\u201cI can\u2019t stop playing this.\u201d",
+    app: "There\u2019s no compose button. Your real top three posts itself from what you actually listened to, so there\u2019s nothing to curate.",
+  },
 ];
 
 export function Ethos() {
@@ -35,7 +54,7 @@ export function Ethos() {
               Ethos <EthosPill />
             </p>
             <h2 className="font-display text-4xl leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">
-              The layer <span className="italic text-muted">beneath</span> the feed.
+              Social, <span className="italic text-muted">properly.</span>
             </h2>
           </Reveal>
           <Reveal delay={0.1}>
@@ -55,32 +74,66 @@ export function Ethos() {
         <div className="space-y-7 text-lg leading-relaxed text-foreground/85 sm:text-xl sm:leading-relaxed">
           <Reveal>
             <p>
-              Most social apps are a stage. Every post is a small performance, tuned for a crowd you mostly
-              don&apos;t know. It&apos;s fine. It&apos;s also exhausting, and it&apos;s not where your actual
-              friendships live.
+              Think about how you actually share things with friends. You play them the song. You tell them
+              the movie wrecked you. You hand them the book. You say &ldquo;we&apos;re at the park, come
+              by.&rdquo; Nobody&apos;s keeping score, and you&apos;d have loved the song either way.
             </p>
           </Reveal>
           <Reveal delay={0.05}>
             <p>
-              We build for the part underneath that. The song that&apos;s been on loop all week. The movie that
-              gutted you. The reel you forwarded because it <em>is</em> you, not because it&apos;s content. The
-              book you finished and immediately knew who needed it next. Your mood, today, in one colour.
+              Then look at what &ldquo;social&rdquo; apps turned that into. Posting on Instagram is work:
+              getting the shot right, the caption right, picking the highlight, then waiting to see how it
+              lands. It&apos;s a reel of your best moments, put up for approval. That&apos;s not really
+              sharing — it&apos;s publishing.
             </p>
           </Reveal>
           <Reveal delay={0.1}>
             <p className="font-display text-2xl leading-snug text-foreground sm:text-3xl">
-              None of that needs likes. It needs the four people who&apos;d actually want to know.
+              These apps put it back the right way round: it&apos;s yours first. Then it&apos;s something
+              your friends get to see.
             </p>
           </Reveal>
           <Reveal delay={0.15}>
             <p>
-              So these apps are quieter on purpose. Some have no compose button at all. A hangout invite that
-              doesn&apos;t feel like an event. A top three that posts itself. Taste, shared the way you&apos;d
-              share it across a table — no follower counts, nothing to perform.
+              Your taste, your mood, what&apos;s on repeat, where you&apos;ll be tonight — kept for you, and
+              shared the way you would in person, with people who&apos;d genuinely want to know. No follower
+              counts. No performance. Just social, working the way it does in real life.
             </p>
           </Reveal>
           <Reveal delay={0.2}>
-            <div className="flex flex-wrap gap-2 pt-3">
+            <div className="pt-4">
+              <p className="mb-4 text-xs uppercase tracking-[0.2em] text-muted">In practice</p>
+              <ul className="divide-y divide-border border-y border-border">
+                {inPractice.map((x) => {
+                  const a = apps.find((y) => y.slug === x.slug)!;
+                  return (
+                    <li key={x.slug}>
+                      <Link
+                        href={`/apps/${a.slug}`}
+                        className="group grid gap-x-6 gap-y-1 py-5 sm:grid-cols-[9.5rem_1fr]"
+                      >
+                        <span className="flex items-center gap-2.5 self-start">
+                          <span
+                            className="h-2 w-2 rounded-full"
+                            style={{ background: a.accent, boxShadow: `0 0 10px ${a.accent}` }}
+                          />
+                          <span className="font-display text-xl text-foreground transition-colors group-hover:text-accent">
+                            {a.name}
+                          </span>
+                        </span>
+                        <span className="text-base leading-relaxed">
+                          <span className="font-display italic text-foreground">{x.irl}</span>{" "}
+                          <span className="text-muted">{x.app}</span>
+                        </span>
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          </Reveal>
+          <Reveal delay={0.25}>
+            <div className="flex flex-wrap gap-2 pt-1">
               {thread.map((a) => (
                 <Link
                   key={a.slug}

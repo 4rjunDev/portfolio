@@ -13,7 +13,7 @@ export type App = {
   accent: string;
   screenshots: string[];
   landscapeScreens?: string[];
-  /** Part of the "quiet social" thread — built for sharing with people who know you. */
+  /** Part of the "properly social" thread — yours first, shared as you would in person. */
   ethos?: boolean;
   /** Screenshots are simulator captures that already show the Dynamic Island. */
   islandInCapture?: boolean;
@@ -132,7 +132,7 @@ export const apps: App[] = [
   {
     slug: "come-thru",
     name: "Come Thru",
-    tagline: "Post where you'll be, let friends tail along — ad-hoc pull-ups, not events.",
+    tagline: "Say where you'll be, let friends tail along — ad-hoc pull-ups, not events.",
     description:
       "Come Thru is built for casual, spontaneous hangouts — \"pulling up to McCarren at 6\" — instead of formal event planning. Two-tap posting, tiered audiences with time-gated visibility, and a suggestion engine that notices recurring habits and offers to re-post them.",
     features: [
