@@ -3,9 +3,9 @@ import { AppScreen } from "@/components/app-screen";
 import type { App } from "@/data/apps";
 
 // Proportions from the iPhone Pro body (71.9 x 150 mm), bezel and corner radii,
-// expressed as percentages so any frame size stays true. A Dynamic Island is drawn
-// only for screens that don't already show one (mock screens, design mockups) so
-// every phone reads the same as the real simulator captures.
+// expressed as percentages so any frame size stays true. No Dynamic Island: it's
+// painted out of the simulator captures (scripts/remove-island.mjs) and never drawn,
+// so every screen is an uninterrupted full display.
 export function PhoneFrame({
   app,
   src,
@@ -23,10 +23,9 @@ export function PhoneFrame({
   landscape?: boolean;
   children?: React.ReactNode;
 }) {
-  const drawIsland = !(src && app.islandInCapture);
-  // Real images that aren't simulator captures (design mockups) also need the status
-  // bar drawn; mock screens draw their own.
-  const drawStatusBar = Boolean(src) && !app.islandInCapture && !landscape;
+  // Simulator captures carry their own status bar; everything else (design mockups,
+  // generated mock screens) gets the same drawn one so every phone matches.
+  const drawStatusBar = !(src && app.islandInCapture) && !landscape;
   return (
     <div
       className={cn(
@@ -53,12 +52,6 @@ export function PhoneFrame({
         )}
       >
         {children ?? <AppScreen app={app} src={src} priority={priority} sizes={sizes} />}
-        {drawIsland &&
-          (landscape ? (
-            <div className="pointer-events-none absolute left-[1.6%] top-1/2 z-10 h-[31%] w-[4%] min-w-[6px] -translate-y-1/2 rounded-full bg-black" />
-          ) : (
-            <div className="pointer-events-none absolute left-1/2 top-[1.6%] z-10 h-[4%] w-[31%] -translate-x-1/2 rounded-full bg-black" />
-          ))}
         {drawStatusBar && <StatusBar />}
         <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-br from-white/10 via-transparent to-transparent" />
       </div>

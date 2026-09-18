@@ -15,7 +15,7 @@ export type App = {
   landscapeScreens?: string[];
   /** Part of the "properly social" thread — yours first, shared as you would in person. */
   ethos?: boolean;
-  /** Screenshots are simulator captures that already show the Dynamic Island. */
+  /** Screenshots are simulator captures, so they already include a status bar. */
   islandInCapture?: boolean;
 };
 
@@ -42,14 +42,14 @@ export const apps: App[] = [
     islandInCapture: true,
     accent: "#38bdf8",
     screenshots: [
-      "/apps/convoy/02-map.webp",
-      "/apps/convoy/07-drawer-full.webp",
-      "/apps/convoy/01-welcome.webp",
-      "/apps/convoy/03-talk.webp",
-      "/apps/convoy/04-hazard.webp",
-      "/apps/convoy/10-planner.webp",
-      "/apps/convoy/06-map-dark.webp",
-      "/apps/convoy/05-profile.webp",
+      "/apps/convoy/02-map-n.webp",
+      "/apps/convoy/07-drawer-full-n.webp",
+      "/apps/convoy/01-welcome-n.webp",
+      "/apps/convoy/03-talk-n.webp",
+      "/apps/convoy/04-hazard-n.webp",
+      "/apps/convoy/10-planner-n.webp",
+      "/apps/convoy/06-map-dark-n.webp",
+      "/apps/convoy/05-profile-n.webp",
     ],
   },
   {
@@ -75,12 +75,12 @@ export const apps: App[] = [
     islandInCapture: true,
     accent: "#f59e0b",
     screenshots: [
-      "/apps/grid/1-feed.webp",
-      "/apps/grid/2-generation.webp",
-      "/apps/grid/3-rate-and-log.webp",
-      "/apps/grid/4-garage.webp",
-      "/apps/grid/5-search.webp",
-      "/apps/grid/6-lists.webp",
+      "/apps/grid/1-feed-n.webp",
+      "/apps/grid/2-generation-n.webp",
+      "/apps/grid/3-rate-and-log-n.webp",
+      "/apps/grid/4-garage-n.webp",
+      "/apps/grid/5-search-n.webp",
+      "/apps/grid/6-lists-n.webp",
     ],
   },
   {
@@ -174,7 +174,7 @@ export const apps: App[] = [
     ethos: true,
     islandInCapture: true,
     accent: "#34d399",
-    screenshots: ["/apps/on-loop/01-onboarding.webp"],
+    screenshots: ["/apps/on-loop/01-onboarding-n.webp"],
   },
   {
     slug: "restrung",
@@ -221,10 +221,10 @@ export const apps: App[] = [
     islandInCapture: true,
     accent: "#e879f9",
     screenshots: [
-      "/apps/inspo/demo-screenshot.webp",
-      "/apps/inspo/share-sheet.webp",
-      "/apps/inspo/sign-in.webp",
-      "/apps/inspo/reels-tab.webp",
+      "/apps/inspo/demo-screenshot-n.webp",
+      "/apps/inspo/share-sheet-n.webp",
+      "/apps/inspo/sign-in-n.webp",
+      "/apps/inspo/reels-tab-n.webp",
     ],
   },
   {
@@ -248,7 +248,7 @@ export const apps: App[] = [
     ethos: true,
     islandInCapture: true,
     accent: "#fbbf24",
-    screenshots: ["/apps/bookmarked/01-home.webp"],
+    screenshots: ["/apps/bookmarked/01-home-n.webp"],
   },
   {
     slug: "call-it",
@@ -272,12 +272,12 @@ export const apps: App[] = [
     year: "2026",
     islandInCapture: true,
     accent: "#22d3ee",
-    screenshots: ["/apps/call-it/06-pairing-portrait.webp", "/apps/call-it/07-recordings-portrait.webp"],
+    screenshots: ["/apps/call-it/06-pairing-portrait-n.webp", "/apps/call-it/07-recordings-portrait-n.webp"],
     landscapeScreens: [
-      "/apps/call-it/01-capture.webp",
-      "/apps/call-it/02-pairing.webp",
-      "/apps/call-it/03-host-waiting.webp",
-      "/apps/call-it/05-test-signal.webp",
+      "/apps/call-it/01-capture-n.webp",
+      "/apps/call-it/02-pairing-n.webp",
+      "/apps/call-it/03-host-waiting-n.webp",
+      "/apps/call-it/05-test-signal-n.webp",
     ],
   },
   {

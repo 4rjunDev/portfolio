@@ -32,7 +32,7 @@ function screen(app, src, variant = 0) {
   const rows = [[0.85, 0.6, 0.72], [0.5, 0.8, 0.65], [0.7, 0.45, 0.9]];
   const heroH = [34, 24, 44][variant];
   return `<div class="mock">
-    <div class="mock-bar"><span>9:41</span><span>●●▬</span></div>
+    <div class="mock-bar"></div>
     <div class="mock-cat">${esc(app.category)}</div>
     <div class="mock-name">${esc(app.name)}</div>
     <div class="mock-hero" style="height:${heroH}%;background:radial-gradient(120% 90% at ${origins[variant]}, ${a} 0%, ${a}66 35%, #161615 75%)"><i></i><i></i></div>
@@ -45,7 +45,7 @@ function phones(list) {
   const z = [1, 3, 2];
   const y = [26, 0, 26];
   return list.map((p, i) => `<div class="phone${i === 1 ? " mid" : ""}" style="transform:translateY(${y[i]}px) rotate(${rot[i]}deg);z-index:${z[i]}">
-    <div class="phone-in">${screen(p.app, p.src, i)}${p.src && p.app.islandInCapture ? "" : '<span class="island"></span>'}${p.src && !p.app.islandInCapture ? '<span class="sbar"><b>9:41</b><i></i></span>' : ""}</div></div>`).join("");
+    <div class="phone-in">${screen(p.app, p.src, i)}${p.src && p.app.islandInCapture ? "" : '<span class="sbar"><b>9:41</b><i></i></span>'}</div></div>`).join("");
 }
 
 function html({ eyebrow, title, blurb, pills, accent, phoneList, index }) {

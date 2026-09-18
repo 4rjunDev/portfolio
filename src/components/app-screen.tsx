@@ -29,14 +29,8 @@ export function AppScreen({
   return (
     <div className="absolute inset-0 @container bg-[#0c0c0b] text-white">
       <div className="flex h-full flex-col">
-        <div className="flex items-center justify-between px-[7cqw] pt-[5cqw] text-[3.2cqw] text-white/60">
-          <span>9:41</span>
-          <span className="flex gap-[1cqw]">
-            <span className="h-[2cqw] w-[2cqw] rounded-full bg-white/40" />
-            <span className="h-[2cqw] w-[2cqw] rounded-full bg-white/40" />
-            <span className="h-[2cqw] w-[4cqw] rounded-[0.5cqw] bg-white/60" />
-          </span>
-        </div>
+        {/* status bar is drawn by PhoneFrame */}
+        <div className="h-[11cqw]" />
 
         <div className="px-[7cqw] pt-[7cqw]">
           <p className="text-[2.8cqw] uppercase tracking-[0.25em] text-white/40">{app.category}</p>
