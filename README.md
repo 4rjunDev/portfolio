@@ -116,7 +116,7 @@ Flags live in [`src/lib/flags.ts`](src/lib/flags.ts) and are read from `NEXT_PUB
 - `src/components` — hero, sticky scroll showcase, Apps dropdown, phone frames, stack pills, etc.
 - `src/data/apps.ts` — hardcoded structured content for every app (no CMS)
 - `public/apps/<slug>/` — real screenshots pulled from each app's repo, where available
-- `scripts/` — `og.mjs` (link-preview cards), `icon.mjs` (favicon), `capture.sh` (simulator screenshots)
+- `scripts/` — `capture.sh` (grab simulator screenshots), `towebp.mjs` (`npm run webp`: shrink them to WebP), `og.mjs` (`npm run og`: link-preview cards), `icon.mjs` (`npm run icons`: favicon)
 - `src/app/sitemap.ts`, `robots.ts` — generated at build from `NEXT_PUBLIC_SITE_URL`
 - `docs/demo.mp4` — screen-recorded walkthrough
 
