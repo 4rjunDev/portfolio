@@ -7,6 +7,7 @@ import { Footer } from "@/components/footer";
 import { Reveal } from "@/components/reveal";
 import { PhoneFrame } from "@/components/phone-frame";
 import { StackPill } from "@/components/stack-pill";
+import { EthosPill } from "@/components/ethos";
 
 export function generateStaticParams() {
   return apps.map((a) => ({ slug: a.slug }));
@@ -60,6 +61,11 @@ export default async function AppDetail({ params }: { params: Promise<{ slug: st
               <span className="font-mono tabular-nums">{String(index + 1).padStart(2, "0")}</span>
               <span className="h-px w-10 bg-border" />
               <span className="uppercase tracking-[0.2em]">{app.category}</span>
+              {app.ethos && (
+                <Link href="/#ethos">
+                  <EthosPill />
+                </Link>
+              )}
             </div>
             <h1 className="font-display mt-4 text-5xl tracking-tight sm:text-6xl lg:text-7xl">
               {app.displayName ?? app.name}

@@ -13,6 +13,8 @@ export type App = {
   accent: string;
   screenshots: string[];
   landscapeScreens?: string[];
+  /** Part of the "quiet social" thread — built for sharing with people who know you. */
+  ethos?: boolean;
   /** Screenshots are simulator captures that already show the Dynamic Island. */
   islandInCapture?: boolean;
 };
@@ -69,6 +71,7 @@ export const apps: App[] = [
     statusDetail: "7 commits · design system fully implemented",
     category: "Social / Automotive",
     year: "2026",
+    ethos: true,
     islandInCapture: true,
     accent: "#f59e0b",
     screenshots: [
@@ -99,6 +102,7 @@ export const apps: App[] = [
     statusDetail: "46 commits in one week · design decision pending",
     category: "Social",
     year: "2026",
+    ethos: true,
     accent: "#a78bfa",
     screenshots: ["/apps/moody/editorial-v2.webp", "/apps/moody/midnight-v2.webp", "/apps/moody/orbit-v2.webp"],
   },
@@ -144,6 +148,7 @@ export const apps: App[] = [
     statusDetail: "16 commits · pivoted from web to native mid-build",
     category: "Social",
     year: "2026",
+    ethos: true,
     accent: "#fb7185",
     screenshots: [],
   },
@@ -166,6 +171,7 @@ export const apps: App[] = [
     statusDetail: "14 commits · provider adapters just landed",
     category: "Music / Social",
     year: "2026",
+    ethos: true,
     islandInCapture: true,
     accent: "#34d399",
     screenshots: ["/apps/on-loop/01-onboarding.webp"],
@@ -211,6 +217,7 @@ export const apps: App[] = [
     statusDetail: "7 commits · verified working on real hardware",
     category: "Utility",
     year: "2026",
+    ethos: true,
     islandInCapture: true,
     accent: "#e879f9",
     screenshots: [
@@ -238,6 +245,7 @@ export const apps: App[] = [
     statusDetail: "Demo-mode-first, seeded catalog and mock social graph",
     category: "Social / Reading",
     year: "2026",
+    ethos: true,
     islandInCapture: true,
     accent: "#fbbf24",
     screenshots: ["/apps/bookmarked/01-home.webp"],
@@ -291,6 +299,7 @@ export const apps: App[] = [
     statusDetail: "Auth, feed, search, log, and profile flows built · no screenshots yet",
     category: "Social / Entertainment",
     year: "2026",
+    ethos: true,
     accent: "#ef4444",
     screenshots: [],
   },

@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { apps } from "@/data/apps";
 import { Reveal } from "@/components/reveal";
+import { EthosPill } from "@/components/ethos";
 
 export function AppsIndex() {
   return (
@@ -49,6 +50,7 @@ export function AppsIndex() {
                 <p className="font-display text-xl leading-tight">{a.name}</p>
                 <p className="mt-1 text-[11px] text-muted">{a.category}</p>
                 <p className="mt-3 text-[11px] text-muted/80">{a.status}</p>
+                {a.ethos && <EthosPill className="mt-3 px-2 py-0.5 text-[9px]" />}
               </div>
             </Link>
           </motion.li>

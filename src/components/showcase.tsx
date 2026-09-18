@@ -9,6 +9,7 @@ import { apps } from "@/data/apps";
 import { PhoneFrame } from "@/components/phone-frame";
 import { AppScreen } from "@/components/app-screen";
 import { StackPill } from "@/components/stack-pill";
+import { EthosPill } from "@/components/ethos";
 
 const STEP_VH = 85;
 const ease = [0.16, 1, 0.3, 1] as const;
@@ -87,6 +88,7 @@ export function Showcase() {
                     <ArrowUpRight size={16} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </Link>
                   <span className="text-muted">{app.status}</span>
+                  {app.ethos && <EthosPill className="hidden sm:inline-flex" />}
                 </div>
               </motion.div>
             </AnimatePresence>

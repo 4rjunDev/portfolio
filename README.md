@@ -1,6 +1,6 @@
 # ADHD Studios — Portfolio
 
-A portfolio site showcasing the iOS apps ADHD Studios has been building — Convoy, GRID, Moody, Deuce (Tennis Trivia), Come Thru, On Loop, Restrung, Inspo, Bookmarked, and Call It.
+A portfolio site showcasing the iOS apps ADHD Studios has been building — Convoy, GRID, Moody, Deuce (Tennis Trivia), Come Thru, On Loop, Restrung, Inspo, Bookmarked, Call It, and Revue.
 
 Built with Next.js (App Router), TypeScript, Tailwind CSS v4, Framer Motion, and Lenis for smooth scroll. The whole site is statically exported — no server, so it can be hosted anywhere that serves files, including GitHub Pages for free. All the animations (scroll showcase, dropdown, theme toggle) run client-side and work on a static host.
 

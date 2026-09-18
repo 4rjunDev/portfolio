@@ -39,6 +39,9 @@ export function Nav() {
               <span className="h-1.5 w-1.5 rounded-full bg-accent shadow-[0_0_8px_var(--accent)]" />
             </Link>
           )}
+          <Link href="/#ethos" className="hidden text-muted hover:text-foreground transition-colors sm:inline">
+            Ethos
+          </Link>
           <Link href="/#about" className="text-muted hover:text-foreground transition-colors">
             About
           </Link>
