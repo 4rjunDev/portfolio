@@ -39,7 +39,7 @@ export default async function AppDetail({ params }: { params: Promise<{ slug: st
   return (
     <div className="flex flex-1 flex-col">
       <Nav />
-      <main className="relative w-full pt-28 pb-24">
+      <main id="content" className="relative w-full pt-28 pb-24">
         <div
           aria-hidden
           className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[70vh]"
@@ -83,7 +83,12 @@ export default async function AppDetail({ params }: { params: Promise<{ slug: st
         </div>
 
         <Reveal delay={0.15}>
-          <div className="mt-14 flex snap-x snap-mandatory gap-6 overflow-x-auto px-6 pb-6 md:px-10 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          <div
+            tabIndex={0}
+            role="region"
+            aria-label={`${app.name} screenshots`}
+            className="mt-14 flex snap-x snap-mandatory gap-6 overflow-x-auto px-6 pb-6 md:px-10 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+          >
             <div className="shrink-0 w-[calc((100vw-72rem)/2-1.5rem)] max-md:hidden" />
             {screens.map((src, i) => (
               <div key={src ?? i} className="w-[220px] shrink-0 snap-center sm:w-[260px]">

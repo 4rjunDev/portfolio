@@ -49,7 +49,7 @@ export function AppsIndex() {
               <div className="mt-8">
                 <p className="font-display text-xl leading-tight">{a.name}</p>
                 <p className="mt-1 text-[11px] text-muted">{a.category}</p>
-                <p className="mt-3 text-[11px] text-muted/80">{a.status}</p>
+                <p className="mt-3 text-[11px] text-muted">{a.status}</p>
                 {a.ethos && <EthosPill className="mt-3 px-2 py-0.5 text-[9px]" />}
               </div>
             </Link>

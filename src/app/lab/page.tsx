@@ -33,7 +33,7 @@ export default function Lab() {
   return (
     <div className="flex flex-1 flex-col">
       <Nav />
-      <main className="relative w-full pt-32 pb-24">
+      <main id="content" className="relative w-full pt-32 pb-24">
         <div
           aria-hidden
           className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[60vh]"

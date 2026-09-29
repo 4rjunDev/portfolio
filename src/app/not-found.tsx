@@ -9,7 +9,7 @@ export default function NotFound() {
   return (
     <div className="flex flex-1 flex-col">
       <Nav />
-      <main className="mx-auto flex w-full max-w-6xl flex-1 flex-col justify-center px-6 pt-32 pb-24 md:px-10">
+      <main id="content" className="mx-auto flex w-full max-w-6xl flex-1 flex-col justify-center px-6 pt-32 pb-24 md:px-10">
         <p className="font-mono text-xs text-muted">404</p>
         <h1 className="font-display mt-4 text-5xl tracking-tight sm:text-7xl">
           Nothing <span className="italic text-muted">shipped</span> here.
