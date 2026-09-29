@@ -1,9 +1,16 @@
 "use client";
 
 import { useSyncExternalStore } from "react";
-import { Moon, Sun } from "lucide-react";
+import { Monitor, Moon, Sun } from "lucide-react";
 
-type Theme = "dark" | "light";
+// "system" = no data-theme attribute, so CSS follows prefers-color-scheme.
+type Pref = "system" | "light" | "dark";
+const next: Record<Pref, Pref> = { system: "light", light: "dark", dark: "system" };
+const label: Record<Pref, string> = {
+  system: "Theme: matching your system. Switch to light",
+  light: "Theme: light. Switch to dark",
+  dark: "Theme: dark. Switch to match your system",
+};
 
 function subscribe(cb: () => void) {
   const obs = new MutationObserver(cb);
@@ -11,29 +18,38 @@ function subscribe(cb: () => void) {
   return () => obs.disconnect();
 }
 
-function read(): Theme {
-  return document.documentElement.getAttribute("data-theme") === "light" ? "light" : "dark";
+function read(): Pref {
+  const t = document.documentElement.getAttribute("data-theme");
+  return t === "light" || t === "dark" ? t : "system";
 }
 
 export function ThemeToggle() {
-  const theme = useSyncExternalStore(subscribe, read, () => "dark");
+  const pref = useSyncExternalStore(subscribe, read, () => "system" as Pref);
 
-  const toggle = () => {
-    const next: Theme = theme === "dark" ? "light" : "dark";
-    document.documentElement.setAttribute("data-theme", next);
+  const cycle = () => {
+    const to = next[pref];
+    const root = document.documentElement;
     try {
-      localStorage.setItem("theme", next);
+      if (to === "system") {
+        root.removeAttribute("data-theme");
+        localStorage.removeItem("theme");
+      } else {
+        root.setAttribute("data-theme", to);
+        localStorage.setItem("theme", to);
+      }
     } catch {}
   };
 
+  const Icon = pref === "system" ? Monitor : pref === "light" ? Sun : Moon;
   return (
     <button
       type="button"
-      onClick={toggle}
-      aria-label="Toggle theme"
+      onClick={cycle}
+      aria-label={label[pref]}
+      title={label[pref]}
       className="flex h-8 w-8 items-center justify-center rounded-full border border-border text-muted transition-colors hover:border-foreground hover:text-foreground"
     >
-      {theme === "dark" ? <Sun size={14} /> : <Moon size={14} />}
+      <Icon size={14} />
     </button>
   );
 }

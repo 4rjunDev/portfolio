@@ -10,8 +10,21 @@
   --card-border: rgba(20, 19, 15, 0.08);
 }
 
-:root[data-theme="dark"],
-:root:not([data-theme="light"]) {
+/* Follow the OS setting unless the visitor picked a theme explicitly. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --background: #0a0a09;
+    --foreground: #f4f2ec;
+    --muted: #8f8d84;
+    --border: rgba(244, 242, 236, 0.1);
+    --accent: #ff6a33;
+    --card: #121210;
+    --card-border: rgba(244, 242, 236, 0.08);
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
   --background: #0a0a09;
   --foreground: #f4f2ec;
   --muted: #8f8d84;
@@ -19,16 +32,7 @@
   --accent: #ff6a33;
   --card: #121210;
   --card-border: rgba(244, 242, 236, 0.08);
-}
-
-:root[data-theme="light"] {
-  --background: #fbfaf8;
-  --foreground: #14130f;
-  --muted: #6b6a63;
-  --border: rgba(20, 19, 15, 0.1);
-  --accent: #b53c0a;
-  --card: #ffffff;
-  --card-border: rgba(20, 19, 15, 0.08);
+  color-scheme: dark;
 }
 
 @theme inline {
@@ -49,10 +53,6 @@
 
 html {
   background: var(--background);
-  color-scheme: dark;
-}
-
-html[data-theme="light"] {
   color-scheme: light;
 }
 

@@ -26,10 +26,12 @@ export function PhoneFrame({
   // Simulator captures carry their own status bar; everything else (design mockups,
   // generated mock screens) gets the same drawn one so every phone matches.
   const drawStatusBar = !(src && app.islandInCapture) && !landscape;
+  const finish = FINISHES[finishIndex(app.name)];
   return (
     <div
+      style={{ background: finish.metal, boxShadow: `0 30px 80px -20px rgba(0,0,0,0.7), inset 0 0 0 1px ${finish.edge}` }}
       className={cn(
-        "relative w-full overflow-hidden bg-[#0a0a0a] shadow-[0_30px_80px_-20px_rgba(0,0,0,0.7),inset_0_0_0_1px_rgba(255,255,255,0.12)]",
+        "relative w-full overflow-hidden",
         landscape ? "aspect-[150/71.9] rounded-[7.2%/15%]" : "aspect-[71.9/150] rounded-[15%/7.2%]",
         className
       )}
@@ -40,6 +42,13 @@ export function PhoneFrame({
         here (width is fine), which overflows this pane past the rounded clip and squares
         off the bottom corners. `inset` isn't affected by that bug in any engine.
       */}
+      {/* black glass bezel inside the coloured band */}
+      <div
+        className={cn(
+          "absolute bg-[#050505]",
+          landscape ? "inset-x-[0.5%] inset-y-[1.05%] rounded-[6.9%/14.4%]" : "inset-x-[1.05%] inset-y-[0.5%] rounded-[14.4%/6.9%]"
+        )}
+      />
       <div
         className={cn(
           "absolute overflow-hidden bg-black @container",
@@ -57,6 +66,28 @@ export function PhoneFrame({
       </div>
     </div>
   );
+}
+
+// iPhone 18 Pro-style finishes. Assigned by hashing the app name so the mix looks
+// random but each app keeps its colour on every load (a per-load random pick would
+// mismatch between the server render and hydration).
+const FINISHES = [
+  {
+    name: "burgundy",
+    metal: "linear-gradient(145deg, #7a2a38 0%, #4a1520 38%, #2e0c14 62%, #6b2230 100%)",
+    edge: "rgba(255, 190, 200, 0.22)",
+  },
+  {
+    name: "blue",
+    metal: "linear-gradient(145deg, #3f5f8f 0%, #1d3358 38%, #101d36 62%, #34507c 100%)",
+    edge: "rgba(190, 215, 255, 0.24)",
+  },
+];
+
+function finishIndex(key: string) {
+  let h = 0;
+  for (let i = 0; i < key.length; i++) h = (h * 31 + key.charCodeAt(i)) >>> 0;
+  return h % FINISHES.length;
 }
 
 // iOS-style status bar for screens that lack one. `mix-blend-difference` on white
