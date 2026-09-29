@@ -124,7 +124,7 @@ export const apps: App[] = [
     stage: "ready",
     islandInCapture: true,
     accent: "#818cf8",
-    screenshots: [],
+    screenshots: ["/apps/schedule/01-week-n.webp", "/apps/schedule/02-day-n.webp", "/apps/schedule/03-retro-n.webp", "/apps/schedule/04-insights-n.webp", "/apps/schedule/05-notes-n.webp", "/apps/schedule/06-setup-n.webp"],
   },
   {
     slug: "tennis-trivia",

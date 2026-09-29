@@ -7,6 +7,11 @@ import { apps } from "@/data/apps";
 import { Reveal } from "@/components/reveal";
 import { EthosPill } from "@/components/ethos";
 
+const groups = [
+  { stage: "ready", title: "Closest to shipping", note: "Working builds, real backends, most of the way there" },
+  { stage: "early", title: "Early concepts", note: "First scaffolds and prototypes" },
+] as const;
+
 export function AppsIndex() {
   return (
     <section className="mx-auto max-w-6xl px-6 py-24 md:px-10">
@@ -22,40 +27,56 @@ export function AppsIndex() {
         </div>
       </Reveal>
 
-      <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
-        {apps.map((a, i) => (
-          <motion.li
-            key={a.slug}
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-40px" }}
-            transition={{ duration: 0.5, delay: (i % 5) * 0.06, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <Link
-              href={`/apps/${a.slug}`}
-              className="group flex h-full flex-col justify-between rounded-2xl border border-card-border bg-card/50 p-4 transition-all duration-300 hover:-translate-y-0.5 hover:bg-card"
-              style={{ ["--a" as string]: a.accent }}
-            >
-              <div className="flex items-start justify-between">
-                <span
-                  className="mt-1 h-2 w-2 rounded-full"
-                  style={{ background: a.accent, boxShadow: `0 0 10px ${a.accent}` }}
-                />
-                <ArrowUpRight
-                  size={16}
-                  className="text-muted transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-foreground"
-                />
+      <div className="space-y-12">
+        {groups.map((g) => {
+          const list = apps.filter((a) => a.stage === g.stage);
+          if (!list.length) return null;
+          return (
+            <div key={g.stage}>
+              <div className="mb-4 flex items-baseline gap-3">
+                <h3 className="text-xs uppercase tracking-[0.2em] text-foreground">{g.title}</h3>
+                <span className="font-mono text-[11px] text-muted">{String(list.length).padStart(2, "0")}</span>
+                <span className="h-px flex-1 bg-border" />
+                <span className="hidden text-xs text-muted sm:inline">{g.note}</span>
               </div>
-              <div className="mt-8">
-                <p className="font-display text-xl leading-tight">{a.name}</p>
-                <p className="mt-1 text-[11px] text-muted">{a.category}</p>
-                <p className="mt-3 text-[11px] text-muted">{a.status}</p>
-                {a.ethos && <EthosPill className="mt-3 px-2 py-0.5 text-[9px]" />}
-              </div>
-            </Link>
-          </motion.li>
-        ))}
-      </ul>
+              <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
+                {list.map((a, i) => (
+                  <motion.li
+                    key={a.slug}
+                    initial={{ opacity: 0, y: 16 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-40px" }}
+                    transition={{ duration: 0.5, delay: (i % 5) * 0.06, ease: [0.16, 1, 0.3, 1] }}
+                  >
+                    <Link
+                      href={`/apps/${a.slug}`}
+                      className="group flex h-full flex-col justify-between rounded-2xl border border-card-border bg-card/50 p-4 transition-all duration-300 hover:-translate-y-0.5 hover:bg-card"
+                      style={{ ["--a" as string]: a.accent }}
+                    >
+                      <div className="flex items-start justify-between">
+                        <span
+                          className="mt-1 h-2 w-2 rounded-full"
+                          style={{ background: a.accent, boxShadow: `0 0 10px ${a.accent}` }}
+                        />
+                        <ArrowUpRight
+                          size={16}
+                          className="text-muted transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-foreground"
+                        />
+                      </div>
+                      <div className="mt-8">
+                        <p className="font-display text-xl leading-tight">{a.name}</p>
+                        <p className="mt-1 text-[11px] text-muted">{a.category}</p>
+                        <p className="mt-3 text-[11px] text-muted">{a.status}</p>
+                        {a.ethos && <EthosPill className="mt-3 px-2 py-0.5 text-[9px]" />}
+                      </div>
+                    </Link>
+                  </motion.li>
+                ))}
+              </ul>
+            </div>
+          );
+        })}
+      </div>
     </section>
   );
 }
