@@ -115,6 +115,7 @@ Flags live in [`src/lib/flags.ts`](src/lib/flags.ts) and are read from `NEXT_PUB
 - `src/app` — routes: `/` (home) and `/apps/[slug]` (per-app case studies)
 - `src/components` — hero, sticky scroll showcase, Apps dropdown, phone frames, stack pills, etc.
 - `src/data/apps.ts` — hardcoded structured content for every app (no CMS)
+- `src/data/ideas.ts` — the "On the bench" list: mobile-app ideas from the Atelier tracker (`~/Documents/atelier/ideas`), curated by hand
 - `public/apps/<slug>/` — real screenshots pulled from each app's repo, where available
 - `scripts/` — `a11y.mjs` (`npm run a11y`: axe-core audit in WebKit + Chromium, both themes), `capture.sh` (grab simulator screenshots), `towebp.mjs` (`npm run webp`: shrink them to WebP), `og.mjs` (`npm run og`: link-preview cards), `icon.mjs` (`npm run icons`: favicon)
 - `src/app/sitemap.ts`, `robots.ts` — generated at build from `NEXT_PUBLIC_SITE_URL`

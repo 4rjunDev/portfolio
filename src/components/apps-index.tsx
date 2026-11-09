@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { apps } from "@/data/apps";
+import { ideas } from "@/data/ideas";
 import { Reveal } from "@/components/reveal";
 import { EthosPill } from "@/components/ethos";
 
@@ -19,10 +20,12 @@ export function AppsIndex() {
         <div className="mb-10 flex items-end justify-between gap-6">
           <div>
             <p className="mb-3 text-sm uppercase tracking-[0.2em] text-muted">Index</p>
-            <h2 className="font-display text-3xl tracking-tight sm:text-4xl">All {apps.length} apps</h2>
+            <h2 className="font-display text-3xl tracking-tight sm:text-4xl">
+              {apps.length} apps, {ideas.length} on the bench
+            </h2>
           </div>
           <p className="hidden max-w-xs text-sm text-muted sm:block">
-            Every one is a native SwiftUI build with real commit history behind it.
+            Every build is native SwiftUI with real commit history. The bench is what&apos;s next.
           </p>
         </div>
       </Reveal>
@@ -76,6 +79,34 @@ export function AppsIndex() {
             </div>
           );
         })}
+
+        <div>
+          <div className="mb-4 flex items-baseline gap-3">
+            <h3 className="text-xs uppercase tracking-[0.2em] text-foreground">On the bench</h3>
+            <span className="font-mono text-[11px] text-muted">{String(ideas.length).padStart(2, "0")}</span>
+            <span className="h-px flex-1 bg-border" />
+            <span className="hidden text-xs text-muted sm:inline">Ideas with a spec, not yet a repo</span>
+          </div>
+          <ul className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-4">
+            {ideas.map((idea, i) => (
+              <motion.li
+                key={idea.atelierId}
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ duration: 0.45, delay: (i % 4) * 0.05, ease: [0.16, 1, 0.3, 1] }}
+                className="rounded-xl border border-dashed border-border px-4 py-3"
+              >
+                <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-3">
+                  <p className="font-display text-lg leading-tight">{idea.name}</p>
+                  <span className="text-[10px] uppercase tracking-[0.15em] text-muted sm:shrink-0 sm:text-right">{idea.category}</span>
+                </div>
+                <p className="mt-1.5 text-[13px] leading-snug text-muted">{idea.tagline}</p>
+                {idea.ethos && <EthosPill className="mt-2.5 px-2 py-0.5 text-[9px]" />}
+              </motion.li>
+            ))}
+          </ul>
+        </div>
       </div>
     </section>
   );
